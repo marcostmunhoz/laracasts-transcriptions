@@ -1,0 +1,28 @@
+{
+    "name": "marcostmunhoz/laracasts-transcriptions",
+    "autoload": {
+        "psr-4": {
+            "MarcosTMunhoz\\LaracastsTranscriptions\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcos Tesolin Munhoz",
+            "email": "marmunhoz414@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "pest",
+        "test:watch": "phpunit-watcher watch"
+    },
+    "config": {
+        "process-timeout": 0,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21",
+        "spatie/phpunit-watcher": "^1.23"
+    }
+}
