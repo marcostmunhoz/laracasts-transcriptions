@@ -11,7 +11,7 @@ class Transcription
     {
         $instance = new static();
 
-        $instance->lines = $instance->discardIrrelevantLines(file($path));
+        $instance->lines = $instance->discardInvalidLines(file($path));
 
         return $instance;
     }
@@ -31,25 +31,11 @@ class Transcription
      * 
      * @return string[]
      */
-    protected function discardIrrelevantLines(array $lines): array
+    protected function discardInvalidLines(array $lines): array
     {
-        return array_values(
-            array_filter( 
+        return array_values(array_filter( 
                 array_map('trim', $lines),
-                function (string $line): bool {
-                    // ignores WEBVTT header
-                    if ($line === 'WEBVTT') {
-                        return false;
-                    }
-
-                    // ignores lines with only numbers
-                    if (is_numeric($line)) {
-                        return false;
-                    }
-
-                    // ignores empty lines
-                    return (bool) $line;
-                }
+                fn (string $line) => Line::isValid($line)
             )
         );
     }
