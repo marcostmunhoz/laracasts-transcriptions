@@ -11,7 +11,9 @@ class Transcription
     {
         $instance = new static();
 
-        $instance->lines = $instance->discardInvalidLines(file($path));
+        $instance->lines = $instance->discardInvalidLines(
+            array_map('trim', file($path))
+        );
 
         return $instance;
     }
@@ -21,9 +23,18 @@ class Transcription
         return implode("\n", $this->lines);
     }
 
+    /**
+     * @return Line[]
+     */
     public function lines(): array
     {
-        return $this->lines;
+        $lines = [];
+
+        for ($i = 0; $i < count($this->lines); $i += 2) { 
+            $lines[] = new Line($this->lines[$i], $this->lines[$i + 1]);
+        }
+        
+        return $lines;
     }
 
     /**
@@ -33,10 +44,9 @@ class Transcription
      */
     protected function discardInvalidLines(array $lines): array
     {
-        return array_values(array_filter( 
-                array_map('trim', $lines),
-                fn (string $line) => Line::isValid($line)
-            )
-        );
+        return array_values(array_filter(
+            $lines,
+            fn (string $line) => Line::isValid($line)
+        ));
     }
 }

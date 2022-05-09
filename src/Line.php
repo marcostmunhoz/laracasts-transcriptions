@@ -4,6 +4,11 @@ namespace MarcosTMunhoz\LaracastsTranscriptions;
 
 class Line
 {
+    public function __construct(
+        public string $timestamp,
+        public string $text
+    ) {}
+
     public static function isValid(string $line): bool
     {
         // ignores WEBVTT header
