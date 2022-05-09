@@ -4,19 +4,20 @@ namespace MarcosTMunhoz\LaracastsTranscriptions;
 
 class Transcription
 {
-    protected string $file;
+    /** @var string[] */
+    protected array $lines;
 
     public static function load(string $path): static
     {
         $instance = new static();
 
-        $instance->file = file_get_contents($path);
+        $instance->lines = file($path);
 
         return $instance;
     }
 
     public function __toString(): string
     {
-        return $this->file;
+        return implode('', $this->lines);
     }
 }
