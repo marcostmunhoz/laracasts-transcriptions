@@ -1,5 +1,6 @@
 <?php
 
+use MarcosTMunhoz\LaracastsTranscriptions\Line;
 use MarcosTMunhoz\LaracastsTranscriptions\Transcription;
 
 test('it loads a vtt file', function () {
@@ -13,7 +14,7 @@ test('it loads a vtt file', function () {
     expect($fixture)->toEqual($transcription);
 });
 
-test('it can convert to an array of lines', function () {
+test('it can convert to an array of line objects', function () {
     // given
     $transcription = Transcription::load(__DIR__.'/stubs/basic-example.vtt');
 
@@ -21,5 +22,6 @@ test('it can convert to an array of lines', function () {
     $lines = $transcription->lines();
 
     // then
-    expect($lines)->toHaveCount(4);
+    expect($lines)->toHaveCount(2);
+    expect($lines)->each->toBeInstanceOf(Line::class);
 });
