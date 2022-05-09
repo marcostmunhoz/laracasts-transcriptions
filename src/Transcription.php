@@ -20,4 +20,9 @@ class Transcription
     {
         return implode('', $this->lines);
     }
+
+    public function lines(): array
+    {
+        return $this->lines;
+    }
 }
