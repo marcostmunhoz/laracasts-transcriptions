@@ -4,18 +4,26 @@ namespace MarcosTMunhoz\LaracastsTranscriptions;
 
 class Transcription
 {
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     protected array $lines;
+
+    /**
+     * @param string[] $lines 
+     * 
+     * @return void 
+     */
+    public function __construct(array $lines)
+    {
+        $this->lines = $this->discardInvalidLines(
+            array_map('trim', $lines)
+        );
+    }
 
     public static function load(string $path): static
     {
-        $instance = new static();
-
-        $instance->lines = $instance->discardInvalidLines(
-            array_map('trim', file($path))
-        );
-
-        return $instance;
+        return new static(file($path));
     }
 
     public function __toString(): string
