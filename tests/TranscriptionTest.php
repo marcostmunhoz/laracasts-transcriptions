@@ -13,3 +13,14 @@ test('it loads a vtt file', function () {
     // then
     expect($fileContents)->toEqual($transcription);
 });
+
+test('it can convert to an array of lines', function () {
+    // given
+    $transcription = Transcription::load(__DIR__.'/stubs/basic-example.vtt');
+
+    // when
+    $lines = $transcription->lines();
+
+    // then
+    expect($lines)->toHaveCount(9);
+});
