@@ -4,14 +4,13 @@ use MarcosTMunhoz\LaracastsTranscriptions\Transcription;
 
 test('it loads a vtt file', function () {
     // given
-    $path = __DIR__.'/stubs/basic-example.vtt';
-    $fileContents = file_get_contents($path);
+    $fixture = file_get_contents(__DIR__.'/fixtures/basic-example-fixture.txt');
 
     // when
-    $transcription = Transcription::load($path);
+    $transcription = Transcription::load(__DIR__.'/stubs/basic-example.vtt');
 
     // then
-    expect($fileContents)->toEqual($transcription);
+    expect($fixture)->toEqual($transcription);
 });
 
 test('it can convert to an array of lines', function () {
@@ -22,5 +21,5 @@ test('it can convert to an array of lines', function () {
     $lines = $transcription->lines();
 
     // then
-    expect($lines)->toHaveCount(9);
+    expect($lines)->toHaveCount(4);
 });
