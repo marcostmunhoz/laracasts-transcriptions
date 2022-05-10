@@ -2,7 +2,9 @@
 
 namespace MarcosTMunhoz\LaracastsTranscriptions;
 
-class Transcription
+use Stringable;
+
+class Transcription implements Stringable
 {
     /**
      * @var string[]
@@ -31,26 +33,12 @@ class Transcription
         return implode("\n", $this->lines);
     }
 
-    /**
-     * @return Line[]
-     */
-    public function lines(): array
+    public function lines(): LineCollection
     {
-        return array_map(
+        return new LineCollection(array_map(
             fn (array $line) => new Line(...$line),
             array_chunk($this->lines, 3)
-        );
-    }
-
-    public function toHtml(): string
-    {
-        return implode(
-            "\n",
-            array_map(
-                fn (Line $line) => $line->toHtml(),
-                $this->lines()
-            )
-        );
+        ));
     }
 
     /**
