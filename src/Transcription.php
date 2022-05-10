@@ -36,13 +36,10 @@ class Transcription
      */
     public function lines(): array
     {
-        $lines = [];
-
-        for ($i = 0; $i < count($this->lines); $i += 2) { 
-            $lines[] = new Line($this->lines[$i], $this->lines[$i + 1]);
-        }
-        
-        return $lines;
+        return array_map(
+            fn (array $line) => new Line(...$line),
+            array_chunk($this->lines, 2)
+        );
     }
 
     public function toHtml(): string
