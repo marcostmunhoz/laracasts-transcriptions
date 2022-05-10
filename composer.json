@@ -1,5 +1,6 @@
 {
     "name": "marcostmunhoz/laracasts-transcriptions",
+    "description": "A package to handle VTT file loading, parsing and rendering.",
     "autoload": {
         "psr-4": {
             "MarcosTMunhoz\\LaracastsTranscriptions\\": "src/"
@@ -21,6 +22,9 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "require": {
+        "php": "^8.0"
     },
     "require-dev": {
         "pestphp/pest": "^1.21",
