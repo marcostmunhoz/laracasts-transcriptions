@@ -25,10 +25,15 @@ class Line
         return (bool) $line;
     }
 
-    public function toHtml(): string
+    public function getBeginningTimestamp(): string
     {
         preg_match('/^\d{2}:\d{2}:\d{2}\.\d{3}/', $this->timestamp, $matches);
 
-        return "<a href=\"?time={$matches[0]}\">{$this->text}</a>";
+        return $matches[0];
+    }
+
+    public function toHtml(): string
+    {
+        return "<a href=\"?time={$this->getBeginningTimestamp()}\">{$this->text}</a>";
     }
 }
