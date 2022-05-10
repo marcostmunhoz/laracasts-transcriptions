@@ -5,6 +5,7 @@ namespace MarcosTMunhoz\LaracastsTranscriptions;
 class Line
 {
     public function __construct(
+        public int $position,
         public string $timestamp,
         public string $text
     ) {}
@@ -13,11 +14,6 @@ class Line
     {
         // ignores WEBVTT header
         if ($line === 'WEBVTT') {
-            return false;
-        }
-
-        // ignores lines with only numbers
-        if (is_numeric($line)) {
             return false;
         }
 

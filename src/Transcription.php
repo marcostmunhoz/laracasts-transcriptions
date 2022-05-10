@@ -38,7 +38,7 @@ class Transcription
     {
         return array_map(
             fn (array $line) => new Line(...$line),
-            array_chunk($this->lines, 2)
+            array_chunk($this->lines, 3)
         );
     }
 
