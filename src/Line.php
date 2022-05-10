@@ -24,4 +24,11 @@ class Line
         // ignores empty lines
         return (bool) $line;
     }
+
+    public function toHtml(): string
+    {
+        preg_match('/^\d{2}:\d{2}:\d{2}\.\d{3}/', $this->timestamp, $matches);
+
+        return "<a href=\"?time={$matches[0]}\">{$this->text}</a>";
+    }
 }
