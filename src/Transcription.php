@@ -45,6 +45,17 @@ class Transcription
         return $lines;
     }
 
+    public function toHtml(): string
+    {
+        return implode(
+            "\n",
+            array_map(
+                fn (Line $line) => $line->toHtml(),
+                $this->lines()
+            )
+        );
+    }
+
     /**
      * @param string[] $lines
      * 
