@@ -32,7 +32,7 @@ test('it renders the lines as html', function () {
     $fixture = file_get_contents(__DIR__.'/fixtures/basic-example-fixture.html');
 
     // when
-    $html = $transcription->toHtml();
+    $html = $transcription->lines()->toHtml();
 
     // then
     expect($html)->toEqual($fixture);
