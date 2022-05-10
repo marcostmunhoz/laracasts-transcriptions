@@ -13,7 +13,8 @@
     ],
     "scripts": {
         "test": "pest",
-        "test:watch": "phpunit-watcher watch"
+        "test:watch": "phpunit-watcher watch",
+        "test:coverage": "pest --coverage"
     },
     "config": {
         "process-timeout": 0,
