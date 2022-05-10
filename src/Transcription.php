@@ -54,15 +54,17 @@ class Transcription
     }
 
     /**
+     * Discards all invalid lines.
+     * Invalid lines are:
+     * - Header (WEBVTT) line
+     * - Empty lines
+     * 
      * @param string[] $lines
      * 
      * @return string[]
      */
     protected function discardInvalidLines(array $lines): array
     {
-        return array_values(array_filter(
-            $lines,
-            fn (string $line) => Line::isValid($line)
-        ));
+        return array_slice(array_filter(array_map('trim', $lines)), 1);
     }
 }
