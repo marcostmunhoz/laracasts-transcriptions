@@ -7,6 +7,9 @@ use Countable;
 use IteratorAggregate;
 use Traversable;
 
+/**
+ * @implements IteratorAggregate<int, Line>
+ */
 class LineCollection implements IteratorAggregate, Countable
 {
     /**
@@ -25,6 +28,9 @@ class LineCollection implements IteratorAggregate, Countable
         );
     }
 
+    /**
+     * @return Traversable<int, Line>|Line[]
+     */
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->items);
