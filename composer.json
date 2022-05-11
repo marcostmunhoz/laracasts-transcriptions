@@ -1,6 +1,7 @@
 {
     "name": "marcostmunhoz/laracasts-transcriptions",
     "description": "A package to handle VTT file loading, parsing and rendering.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "MarcosTMunhoz\\LaracastsTranscriptions\\": "src/"
